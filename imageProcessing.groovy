@@ -25,10 +25,9 @@ spec:
           ])
           container('dind') {
             script {
-                  sh """
-                  docker build -t test .
-                  """
-              }
+              sh """
+              docker build -t test .
+              """
             }
           }
         }
