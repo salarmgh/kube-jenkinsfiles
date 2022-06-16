@@ -26,7 +26,7 @@ spec:
           container('dind') {
             script {
               sh """
-              docker build -t test .
+              docker build -t test -f django/docker/Dockerfile .
               """
             }
           }
