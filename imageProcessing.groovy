@@ -11,28 +11,46 @@ spec:
     securityContext:
       privileged: true
 """
+    }
   }
-}
 
-  stages{
+  stages {
     stage('Build') {
-       steps {
-         script{
-          sh "echo build"
+      steps {
+        script {
+          container('dind') {
+            script {
+              sh """
+                echo 'Build ...'
+              """
+            }
+          }
         }
       }
     }
-    stage('Test'){
-      steps{
-        script{
-          sh "echo text"
+    stage('Test') {
+      steps {
+        script {
+          container('dind') {
+            script {
+              sh """
+                echo 'Test ...'
+              """
+            }
+          }
         }
       }
     }
     stage('Deploy') {
       steps {
-        script{
-          sh "echo deploy"
+        script {
+          container('dind') {
+            script {
+              sh """
+                echo 'Deploy ...'
+              """
+            }
+          }
         }
       }
     }
