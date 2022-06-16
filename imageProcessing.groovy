@@ -18,11 +18,17 @@ spec:
     stage('Build') {
       steps {
         script {
+          checkout([
+            $class: "GitSCM",
+            branches: [[name: "*/main"]],
+            userRemoteConfigs: [[url: "https://github.com/salarmgh/kube-app.git"]]
+          ])
           container('dind') {
             script {
-              sh """
-                echo 'Build ...'
-              """
+                  sh """
+                  docker build -t test .
+                  """
+              }
             }
           }
         }
