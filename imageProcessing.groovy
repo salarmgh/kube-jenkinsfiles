@@ -30,7 +30,7 @@ spec:
           container('dind') {
             script {
               sh """
-              docker build -t test -f django/docker/Dockerfile ./django
+              docker build -t registry.anisa.lab/back -f django/docker/Dockerfile ./django
               """
             }
           }
@@ -44,6 +44,19 @@ spec:
             script {
               sh """
                 echo 'Test ...'
+              """
+            }
+          }
+        }
+      }
+    }
+    stage('Push') {
+      steps {
+        script {
+          container('dind') {
+            script {
+              sh """
+              docker push registry.anisa.lab/back
               """
             }
           }
