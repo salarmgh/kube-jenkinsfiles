@@ -11,7 +11,7 @@ spec:
     command:
       - dockerd-entrypoint.sh
       - "--insecure-registry=registry.anisa.lab"
-      - "--registry-mirror=registry.anisa.lab"
+      - "--registry-mirror=http://registry.anisa.lab"
     securityContext:
       privileged: true
 """
