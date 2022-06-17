@@ -76,7 +76,7 @@ spec:
           container('deployer') {
             script {
               sh """
-                kubectl get nodes
+                ls
               """
             }
           }
