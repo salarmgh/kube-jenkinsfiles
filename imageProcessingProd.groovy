@@ -21,7 +21,7 @@ spec:
           container('dind') {
             script {
               sh """
-                echo 'Building ...'
+                docker build -t registry.anisa.lab/back -f ./django/docker/Dockerfile ./django
               """
             }
           }
