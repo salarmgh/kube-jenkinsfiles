@@ -4,6 +4,7 @@ pipeline {
       yaml """
 kind: Pod
 spec:
+  serviceAccount: deployer
   containers:
   - name: dind
     image: docker:stable-dind
@@ -17,7 +18,6 @@ spec:
   - name: deployer
     image: registry.anisa.lab/deployer
     imagePullPolicy: IfNotPresent
-    serviceAccount: deployer
     tty: "true"
     command:
     - /bin/cat
