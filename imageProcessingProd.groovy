@@ -14,6 +14,13 @@ spec:
     - '--registry-mirror=http://registry.anisa.lab'
     securityContext:
       privileged: true
+  - name: deployer
+    image: registry.anisa.lab/deployer
+    imagePullPolicy: IfNotPresent
+    serviceAccount: deployer
+    tty: "true"
+    command:
+    - /bin/cat
 """
     }
   }
@@ -30,7 +37,7 @@ spec:
           container('dind') {
             script {
               sh """
-                docker build -t registry.anisa.lab/back -f ./django/docker/Dockerfile ./django
+                echo 'docker build -t registry.anisa.lab/back -f ./django/docker/Dockerfile ./django'
               """
             }
           }
@@ -43,7 +50,7 @@ spec:
           container('dind') {
             script {
               sh """
-                echo 'Testing ...'
+                echo 'docker run registry.anisa.lab/back python manage.py test'
               """
             }
           }
@@ -56,7 +63,7 @@ spec:
           container('dind') {
             script {
               sh """
-                docker push registry.anisa.lab/back
+                echo 'docker push registry.anisa.lab/back'
               """
             }
           }
@@ -66,10 +73,10 @@ spec:
     stage('Deploy') {
       steps {
         script {
-          container('dind') {
+          container('deployer') {
             script {
               sh """
-                echo 'Deploying ...'
+                kubectl get nodes
               """
             }
           }
