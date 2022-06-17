@@ -56,7 +56,7 @@ spec:
           container('dind') {
             script {
               sh """
-                echo 'Pushing ...'
+                docker push registry.anisa.lab/back
               """
             }
           }
