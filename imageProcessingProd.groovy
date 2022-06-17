@@ -76,7 +76,7 @@ spec:
           container('deployer') {
             script {
               sh """
-                helm upgrade --install -n app --values image.tag=latest image-processing ./django/kubernetes/helm/image-processing
+                helm upgrade --install -n app --set image.tag=latest image-processing ./django/kubernetes/helm/image-processing
               """
             }
           }
