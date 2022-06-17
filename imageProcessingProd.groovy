@@ -8,6 +8,9 @@ spec:
   - name: dind
     image: docker:stable-dind
     imagePullPolicy: IfNotPresent
+    command:
+    - --insecure-registry='registry.anisa.lab'
+    - --registry-mirror='http://registry.anisa.lab'
     securityContext:
       privileged: true
 """
