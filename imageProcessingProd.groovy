@@ -76,7 +76,7 @@ spec:
           container('deployer') {
             script {
               sh """
-                ls
+                helm upgrade --install -n app image-processing ./django/kubernetes/helm/image-processing
               """
             }
           }
